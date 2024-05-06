@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.mingeso</groupId>
-	<artifactId>api-gateway</artifactId>
+	<artifactId>gateway-server</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>api-gateway</name>
 	<description>API Gateway</description>
