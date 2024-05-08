@@ -20,7 +20,6 @@ spring:
             allowed-origin-patterns: '*'
             allowed-methods: "*"
             allowed-headers: "*"
-
       routes:
         - id: ms-orders
           uri: lb://ms-orders/orders
