@@ -5,3 +5,9 @@ spring:
     url: jdbc:postgresql://localhost:5432/orders-db
     username: postgres
     password: postgres
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      default-zone: http://localhost:8761/eureka
