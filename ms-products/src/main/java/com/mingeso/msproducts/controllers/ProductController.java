@@ -20,7 +20,7 @@ public class ProductController {
     }
 
     @PutMapping
-    public ResponseEntity<String> putProducts(@RequestBody DecreaseStockRequest decreaseStockRequest) {
+    public ResponseEntity<String> decreaseStock(@RequestBody DecreaseStockRequest decreaseStockRequest) {
         this.productService.decreaseStock(decreaseStockRequest);
         return new ResponseEntity<>(
                 "stock diminuido con éxito",
