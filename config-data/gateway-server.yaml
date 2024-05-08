@@ -23,6 +23,6 @@ spring:
             allow-credentials: true
       routes:
         - id: ms-orders
-          uri: http://ms-orders
+          uri: lb://ms-orders
           predicates:
             - Path=/orders
