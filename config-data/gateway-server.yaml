@@ -25,4 +25,4 @@ spring:
         - id: ms-orders
           uri: lb://ms-orders
           predicates:
-            - Path=/orders/*
+            - Path=/orders
