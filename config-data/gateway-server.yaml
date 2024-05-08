@@ -23,6 +23,6 @@ spring:
 
       routes:
         - id: ms-orders
-          uri: lb://hktr.mshome.net:ms-orders:8090
+          uri: lb://ms-orders:8090
           predicates:
             - Path=/orders
