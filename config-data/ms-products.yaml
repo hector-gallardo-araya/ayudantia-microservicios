@@ -1,8 +1,8 @@
 server:
-  port: 8090
+  port: 8091
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/orders-db
+    url: jdbc:postgresql://localhost:5433/products-db
     username: postgres
     password: postgres
 eureka:

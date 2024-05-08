@@ -11,7 +11,7 @@
 	<groupId>com.mingeso</groupId>
 	<artifactId>config-server</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>ms-config</name>
+	<name>config-server</name>
 	<description>API Gateway</description>
 	<properties>
 		<java.version>17</java.version>
