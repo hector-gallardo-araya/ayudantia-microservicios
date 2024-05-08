@@ -20,9 +20,9 @@ spring:
             allowed-origin-patterns: '*'
             allowed-methods: "*"
             allowed-headers: "*"
-            allow-credentials: true
+
       routes:
         - id: ms-orders
           uri: lb://ms-orders
           predicates:
-            - Path=/orders
+            - Path=/orders/*
