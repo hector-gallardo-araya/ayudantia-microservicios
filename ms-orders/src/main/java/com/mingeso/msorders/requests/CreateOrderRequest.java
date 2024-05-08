@@ -8,6 +8,6 @@ import lombok.Setter;
 public class CreateOrderRequest {
     String description;
     String paymentMethod;
-    int total;
-    int[] productIds;
+    Integer total;
+    RequestProduct[] products;
 }

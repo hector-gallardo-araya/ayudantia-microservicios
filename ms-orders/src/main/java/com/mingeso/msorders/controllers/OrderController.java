@@ -19,8 +19,8 @@ public class OrderController {
     }
 
     @PostMapping
-    public ResponseEntity<String> postOrders() {
-//        this.orderService.createOrder(createOrderRequest);
+    public ResponseEntity<String> postOrders(@RequestBody CreateOrderRequest createOrderRequest) {
+        this.orderService.createOrder(createOrderRequest);
         return new ResponseEntity<>(
                 "orden creada con éxito",
                 HttpStatus.OK

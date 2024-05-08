@@ -6,14 +6,14 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "order")
+@Table(name = "client_order")
 @Getter
 @Setter
 @NoArgsConstructor
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    Integer id;
 
     @Column(name = "description")
     String description;
@@ -22,5 +22,5 @@ public class Order {
     String paymentMethod;
 
     @Column(name = "total")
-    int total;
+    Integer total;
 }
