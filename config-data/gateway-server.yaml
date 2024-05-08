@@ -18,6 +18,6 @@ spring:
         - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials, RETAIN_UNIQUE
       routes:
         - id: ms-orders
-          uri: lb://ms-orders
+          uri: lb://ms-orders:8090
           predicates:
             - Path=/orders/**
