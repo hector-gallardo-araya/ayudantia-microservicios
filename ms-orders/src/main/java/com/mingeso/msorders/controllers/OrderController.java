@@ -1,6 +1,7 @@
 package com.mingeso.msorders.controllers;
 
 import com.mingeso.msorders.entities.Order;
+import com.mingeso.msorders.requests.CreateOrderRequest;
 import com.mingeso.msorders.services.OrderService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,8 +19,8 @@ public class OrderController {
     }
 
     @PostMapping
-    public ResponseEntity<String> postOrders() {
-        this.orderService.createOrder();
+    public ResponseEntity<String> postOrders(@RequestBody CreateOrderRequest createOrderRequest) {
+        this.orderService.createOrder(createOrderRequest);
         return new ResponseEntity<>(
                 "orden creada con éxito",
                 HttpStatus.OK
