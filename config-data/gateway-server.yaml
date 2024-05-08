@@ -16,12 +16,6 @@ spring:
           enabled: true
       default-filters:
         - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials, RETAIN_UNIQUE
-      globalcors:
-        cors-configurations:
-          '[/**]':
-            allowed-origin-patterns: '*'
-            allowed-methods: "*"
-            allowed-headers: "*"
       routes:
         - id: MS-ORDERS
           uri: lb://MS-ORDERS:8090
