@@ -1,8 +1,6 @@
 server:
   port: 8080
 eureka:
-  instance:
-    hostname: localhost
   client:
     fetch-registry: true
     register-with-eureka: true
