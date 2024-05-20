@@ -28,7 +28,7 @@ public class ProductService {
             Optional<Product> optionalProduct = this.productRepository.findById(requestProduct.getId());
             if(optionalProduct.isEmpty()) throw new BadRequestException("un producto no existe...");
             Product product = optionalProduct.get();
-            product.setId(requestProduct.getId());
+
             product.setStock(product.getStock() - requestProduct.getQuantity());
             productsToUpdate.add(product);
         }

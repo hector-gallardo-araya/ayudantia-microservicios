@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gateway-server-deployment
+  labels:
+    app: gateway-server-deployment
+spec:
+  selector:
+    matchLabels:
+      app: gateway-server-deployment
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: gateway-server-deployment
+    spec:
+      containers:
+        - name: gateway-server
+          image: polloh/gateway-server
+          ports:
+            - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gateway-server-service
+  labels:
+    app: gateway-server-service
+spec:
+  selector:
+    app: gateway-server-deployment
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+  type: LoadBalancer

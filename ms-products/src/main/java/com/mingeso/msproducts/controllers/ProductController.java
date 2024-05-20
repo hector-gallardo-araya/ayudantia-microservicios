@@ -1,13 +1,13 @@
 package com.mingeso.msproducts.controllers;
 
+import com.mingeso.msproducts.entities.Product;
 import com.mingeso.msproducts.requests.DecreaseStockRequest;
 import com.mingeso.msproducts.services.ProductService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
 
 @RestController
 @RequestMapping("/products")
@@ -23,7 +23,7 @@ public class ProductController {
     public ResponseEntity<String> decreaseStock(@RequestBody DecreaseStockRequest decreaseStockRequest) {
         this.productService.decreaseStock(decreaseStockRequest);
         return new ResponseEntity<>(
-                "stock diminuido con éxito",
+                "stock disminuido con éxito",
                 HttpStatus.OK
         );
     }

@@ -34,7 +34,7 @@ public class OrderService {
     public void createOrder(CreateOrderRequest createOrderRequest) {
         DecreaseStockRequest decreaseStockRequest = new DecreaseStockRequest();
         decreaseStockRequest.setProducts(createOrderRequest.getProducts());
-        productsFeignClient.decreaseStock(decreaseStockRequest);
+        this.productsFeignClient.decreaseStock(decreaseStockRequest);
 
         Order order = new Order();
         order.setDescription(createOrderRequest.getDescription());

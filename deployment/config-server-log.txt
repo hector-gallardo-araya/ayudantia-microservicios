@@ -1,0 +1,56 @@
+Name:             config-server-deployment-5577898c6c-fnwzx
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             minikube/172.31.164.102
+Start Time:       Sun, 19 May 2024 13:21:18 -0400
+Labels:           app=config-server-deployment
+                  pod-template-hash=5577898c6c
+Annotations:      <none>
+Status:           Pending
+IP:               10.244.0.46
+IPs:
+  IP:           10.244.0.46
+Controlled By:  ReplicaSet/config-server-deployment-5577898c6c
+Containers:
+  config-server:
+    Container ID:   
+    Image:          polloh/config-server
+    Image ID:       
+    Port:           8888/TCP
+    Host Port:      0/TCP
+    State:          Waiting
+      Reason:       ImagePullBackOff
+    Ready:          False
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-658p4 (ro)
+Conditions:
+  Type              Status
+  Initialized       True 
+  Ready             False 
+  ContainersReady   False 
+  PodScheduled      True 
+Volumes:
+  kube-api-access-658p4:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type     Reason     Age                 From               Message
+  ----     ------     ----                ----               -------
+  Normal   Scheduled  2m                  default-scheduler  Successfully assigned default/config-server-deployment-5577898c6c-fnwzx to minikube
+  Warning  Failed     93s                 kubelet            Failed to pull image "polloh/config-server": Error response from daemon: Get "https://registry-1.docker.io/v2/": dial tcp: lookup registry-1.docker.io on 172.31.160.1:53: read udp 172.31.164.102:34774->172.31.160.1:53: i/o timeout
+  Warning  Failed     53s                 kubelet            Failed to pull image "polloh/config-server": Error response from daemon: Get "https://registry-1.docker.io/v2/": dial tcp: lookup registry-1.docker.io on 172.31.160.1:53: read udp 172.31.164.102:57120->172.31.160.1:53: i/o timeout
+  Normal   BackOff    41s (x2 over 92s)   kubelet            Back-off pulling image "polloh/config-server"
+  Warning  Failed     41s (x2 over 92s)   kubelet            Error: ImagePullBackOff
+  Normal   Pulling    27s (x3 over 119s)  kubelet            Pulling image "polloh/config-server"
+  Warning  Failed     7s (x3 over 93s)    kubelet            Error: ErrImagePull
+  Warning  Failed     7s                  kubelet            Failed to pull image "polloh/config-server": Error response from daemon: Get "https://registry-1.docker.io/v2/": dial tcp: lookup registry-1.docker.io on 172.31.160.1:53: read udp 172.31.164.102:45564->172.31.160.1:53: i/o timeout

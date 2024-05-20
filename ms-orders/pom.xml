@@ -56,7 +56,6 @@
 			<artifactId>spring-cloud-starter-openfeign</artifactId>
 			<version>4.1.1</version>
 		</dependency>
-
 	</dependencies>
 
 	<build>
