@@ -1,15 +1,13 @@
 server:
-  port: 8091
+  port: ${SERVER_PORT}
 spring:
   datasource:
-    url: jdbc:postgresql://products-db-service:5433/products-db
-    username: postgres
-    password: postgres
+    url: jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_DBNAME}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
 eureka:
-  instance:
-    hostname: localhost
   client:
     fetch-registry: true
     register-with-eureka: true
     service-url:
-      default-zone: http://eureka-server-service:8761/eureka
+      defaultZone: http://eureka-server-service:8761/eureka/

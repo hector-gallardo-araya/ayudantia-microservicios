@@ -2,9 +2,9 @@ server:
   port: ${SERVER_PORT}
 spring:
   datasource:
-    url: jdbc:postgresql://orders-db-service:5432/orders-db
-    username: postgres
-    password: postgres
+    url: jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_DBNAME}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
 eureka:
   client:
     fetch-registry: true
