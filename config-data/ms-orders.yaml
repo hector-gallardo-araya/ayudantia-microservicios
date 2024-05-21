@@ -1,5 +1,5 @@
 server:
-  port: 8090
+  port: ${SERVER_PORT}
 spring:
   datasource:
     url: jdbc:postgresql://orders-db-service:5432/orders-db
