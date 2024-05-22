@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-config-map
+  labels:
+    app: postgres-config-map
+data:
+  DB_HOST_ORDERS: orders-db-service
+  DB_PORT_ORDERS: "5432"
+  DB_DBNAME_ORDERS: orders-db
+  DB_HOST_PRODUCTS: products-db-service
+  DB_PORT_PRODUCTS: "5433"
+  DB_DBNAME_PRODUCTS: products-db

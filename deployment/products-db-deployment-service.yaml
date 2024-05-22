@@ -1,0 +1,90 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: products-db-pv
+  labels:
+    type: local
+spec:
+  storageClassName: standard
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/data/products-db-data"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: products-db-pvc
+  labels:
+    app: postgres
+    tier: database
+spec:
+  storageClassName: standard
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: products-db-deployment
+  labels:
+    app: products-db-deployment
+    tier: database
+spec:
+  selector:
+    matchLabels:
+      app: products-db-deployment
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: products-db-deployment
+        tier: database
+    spec:
+      containers:
+        - name: products-db
+          image: postgres
+          imagePullPolicy: "IfNotPresent"
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-credentials
+                  key: DB_USER_PRODUCTS
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-credentials
+                  key: DB_PASSWORD_PRODUCTS
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: products-db-data
+      volumes:
+        - name: products-db-data
+          persistentVolumeClaim:
+            claimName: products-db-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: products-db-service
+  labels:
+    app: products-db-service
+    tier: database
+spec:
+  ports:
+    - port: 5433
+      targetPort: 5432
+      protocol: TCP
+  selector:
+    app: products-db-deployment
+    tier: database
+  type: LoadBalancer

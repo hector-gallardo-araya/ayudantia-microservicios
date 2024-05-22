@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ms-products-deployment
+  labels:
+    app: ms-products-deployment
+spec:
+  selector:
+    matchLabels:
+      app: ms-products-deployment
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: ms-products-deployment
+    spec:
+      containers:
+        - name: ms-products
+          image: polloh/ms-products
+          ports:
+            - containerPort: 8091
+          env:
+            - name: SERVER_PORT
+              value: "8091"
+            - name: DB_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-config-map
+                  key: DB_HOST_PRODUCTS
+            - name: DB_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-config-map
+                  key: DB_PORT_PRODUCTS
+            - name: DB_DBNAME
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-config-map
+                  key: DB_DBNAME_PRODUCTS
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-credentials
+                  key: DB_USER_PRODUCTS
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-credentials
+                  key: DB_PASSWORD_PRODUCTS
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ms-products-service
+  labels:
+    app: ms-products-service
+spec:
+  selector:
+    app: ms-products-deployment
+  ports:
+    - protocol: TCP
+      port: 8091
+      targetPort: 8091
+  type: LoadBalancer

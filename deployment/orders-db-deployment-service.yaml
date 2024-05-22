@@ -5,7 +5,7 @@ metadata:
   labels:
     type: local
 spec:
-  storageClassName: manual
+  storageClassName: standard
   capacity:
     storage: 1Gi
   accessModes:
@@ -21,7 +21,7 @@ metadata:
     app: postgres
     tier: database
 spec:
-  storageClassName: manual
+  storageClassName: standard
   accessModes:
     - ReadWriteOnce
   resources:
@@ -33,18 +33,18 @@ kind: Deployment
 metadata:
   name: orders-db-deployment
   labels:
-    app: postgres
+    app: orders-db-deployment
     tier: database
 spec:
   selector:
     matchLabels:
-      app: postgres
+      app: orders-db-deployment
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: postgres
+        app: orders-db-deployment
         tier: database
     spec:
       containers:
@@ -57,13 +57,13 @@ spec:
             - name: POSTGRES_USER
               valueFrom:
                 secretKeyRef:
-                  name: postgres-default-credentials
-                  key: POSTGRES_USER
+                  name: postgres-credentials
+                  key: DB_USER_ORDERS
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: postgres-default-credentials
-                  key: POSTGRES_PASSWORD
+                  name: postgres-credentials
+                  key: DB_PASSWORD_ORDERS
           volumeMounts:
             - mountPath: /var/lib/postgresql/data
               name: orders-db-data
@@ -77,7 +77,7 @@ kind: Service
 metadata:
   name: orders-db-service
   labels:
-    app: postgres
+    app: orders-db-service
     tier: database
 spec:
   ports:
@@ -85,6 +85,6 @@ spec:
       targetPort: 5432
       protocol: TCP
   selector:
-    app: postgres
+    app: orders-db-deployment
     tier: database
   type: LoadBalancer

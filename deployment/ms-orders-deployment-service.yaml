@@ -19,6 +19,34 @@ spec:
           image: polloh/ms-orders
           ports:
             - containerPort: 8090
+          env:
+            - name: SERVER_PORT
+              value: "8090"
+            - name: DB_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-config-map
+                  key: DB_HOST_ORDERS
+            - name: DB_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-config-map
+                  key: DB_PORT_ORDERS
+            - name: DB_DBNAME
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-config-map
+                  key: DB_DBNAME_ORDERS
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-credentials
+                  key: DB_USER_ORDERS
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-credentials
+                  key: DB_PASSWORD_ORDERS
 ---
 apiVersion: v1
 kind: Service
