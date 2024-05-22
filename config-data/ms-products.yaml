@@ -7,7 +7,7 @@ spring:
     password: ${DB_PASSWORD}
 eureka:
   instance:
-    hostname: ms-products
+    preferIpAddress: true
   client:
     fetch-registry: true
     register-with-eureka: true
