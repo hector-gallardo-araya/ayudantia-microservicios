@@ -8,6 +8,7 @@ spring:
 eureka:
   instance:
     preferIpAddress: true
+    hostName: ms-products
   client:
     fetch-registry: true
     register-with-eureka: true
