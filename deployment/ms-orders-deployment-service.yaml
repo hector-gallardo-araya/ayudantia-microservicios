@@ -21,7 +21,7 @@ spec:
             - containerPort: 8090
           env:
             - name: SERVER_PORT
-              value: "8090"
+              value: "0"
             - name: DB_HOST
               valueFrom:
                 configMapKeyRef:
@@ -47,18 +47,3 @@ spec:
                 secretKeyRef:
                   name: postgres-credentials
                   key: DB_PASSWORD_ORDERS
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: ms-orders-service
-  labels:
-    app: ms-orders-service
-spec:
-  selector:
-    app: ms-orders-deployment
-  ports:
-    - protocol: TCP
-      port: 8090
-      targetPort: 8090
-  type: LoadBalancer

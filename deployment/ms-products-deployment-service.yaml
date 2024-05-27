@@ -21,7 +21,7 @@ spec:
             - containerPort: 8091
           env:
             - name: SERVER_PORT
-              value: "8091"
+              value: "0"
             - name: DB_HOST
               valueFrom:
                 configMapKeyRef:
@@ -47,18 +47,3 @@ spec:
                 secretKeyRef:
                   name: postgres-credentials
                   key: DB_PASSWORD_PRODUCTS
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: ms-products-service
-  labels:
-    app: ms-products-service
-spec:
-  selector:
-    app: ms-products-deployment
-  ports:
-    - protocol: TCP
-      port: 8091
-      targetPort: 8091
-  type: LoadBalancer
